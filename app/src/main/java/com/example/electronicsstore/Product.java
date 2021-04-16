@@ -4,15 +4,25 @@ public class Product {
 
     String title, manufacturer, category, id;
     Double price;
+    int stock;
 
     public Product(){}
 
-    public Product(String title, String manufacturer, String category, String id, Double price) {
+    public Product(String title, String manufacturer, String category, String id, Double price, int stock) {
         this.title = title;
         this.manufacturer = manufacturer;
         this.category = category;
         this.id = id;
         this.price = price;
+        this.stock = stock;
+    }
+
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
     }
 
     public String getTitle() {

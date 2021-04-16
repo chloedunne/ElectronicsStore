@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">ElectronicsStore</string>
+    <string-array name="category_array">
+        <item>Large Appliances</item>
+        <item>TV and Entertainment</item>
+        <item>Small Appliances</item>
+        <item>Lighting</item>
+        <item>Phones</item>
+        <item>Cameras</item>
+        <item>Smart Tech</item>
+        <item>Other</item>
+    </string-array>
 </resources>

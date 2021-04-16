@@ -52,14 +52,15 @@ public class ViewProductsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-               //createProductActivity
+                Intent i = new Intent(ViewProductsActivity.this, CreateProductActivity.class);
+                startActivity(i);
 
             }
         });
 
     }
 
-    public void loadProducts(){
+    public void loadProducts() {
         productRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -69,6 +70,7 @@ public class ViewProductsActivity extends AppCompatActivity {
                     adapter.notifyDataSetChanged();
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(ViewProductsActivity.this, "Error", Toast.LENGTH_LONG).show();
@@ -82,7 +84,7 @@ public class ViewProductsActivity extends AppCompatActivity {
             public void onClick(View v, int position) {
                 Product product = productList.get(position);
 
-               // Intent i = new Intent(ViewProductsActivity.this, ProductActivity.class);
+                // Intent i = new Intent(ViewProductsActivity.this, ProductActivity.class);
                 //i.putExtra("product", (Serializable) product);
                 //startActivity(i);
 

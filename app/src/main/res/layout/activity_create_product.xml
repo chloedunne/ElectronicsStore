@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CreateProductActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        app:srcCompat="@drawable/electronics" />
+
+    <ImageView
+        android:id="@+id/addImage"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="5dp"
+        android:layout_below="@id/logo"
+        android:layout_height="275dp"
+        app:srcCompat="@drawable/add_image" />
+
+   <TextView
+       android:id="@+id/Name"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:textSize="18sp"
+       android:layout_marginLeft="20dp"
+       android:layout_marginBottom="10dp"
+       android:layout_alignBottom="@id/nameET"
+       android:textColor="@color/navy"
+       android:text="Name"/>
+
+    <EditText
+        android:id="@+id/nameET"
+        android:layout_below="@id/addImage"
+        android:layout_width="match_parent"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="15dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/Name"
+        android:textSize="18sp"
+        />
+    <TextView
+        android:id="@+id/Manufacturer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/manufacturerET"
+        android:textSize="18sp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/navy"
+        android:text="Manufacturer"/>
+
+    <EditText
+        android:id="@+id/manufacturerET"
+        android:layout_width="match_parent"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="15dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/nameET"
+        android:layout_toRightOf="@id/Manufacturer"
+        android:textSize="18sp"
+
+        />
+
+    <TextView
+        android:id="@+id/Price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/priceET"
+        android:textSize="18sp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/navy"
+        android:text="Price"/>
+
+    <EditText
+        android:id="@+id/priceET"
+        android:layout_width="match_parent"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="15dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/Price"
+        android:layout_below="@id/manufacturerET"
+        android:inputType="numberDecimal"
+        android:textSize="18sp"
+        />
+    <TextView
+        android:id="@+id/Stock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/stockET"
+        android:textSize="18sp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/navy"
+        android:text="Stock"/>
+
+    <EditText
+        android:id="@+id/stockET"
+        android:layout_width="match_parent"
+        android:layout_marginRight="25dp"
+        android:layout_marginTop="15dp"
+        android:layout_toRightOf="@id/Stock"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/priceET"
+        android:inputType="number"
+        android:textSize="18sp"
+        />
+
+    <TextView
+        android:id="@+id/Category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/spinner"
+        android:layout_marginLeft="20dp"
+        android:text="Category"
+        android:textColor="@color/navy"
+        android:textSize="18sp" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/stockET"
+        android:layout_toRightOf="@id/Category"
+        android:spinnerMode="dropdown"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="25dp"/>
+
+    <Button
+        android:id="@+id/createProduct"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_below="@id/Category"
+        android:layout_centerHorizontal="true"
+        android:text="create product"
+        android:backgroundTint="#38B6FF"/>
+
+    </RelativeLayout>
+
+</ScrollView>
