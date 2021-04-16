@@ -72,8 +72,8 @@ public class LoginActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     FirebaseUser user = mAuth.getCurrentUser();
-                   // Intent intent = new Intent(LoginActivity.this, ProfileActivity.class);
-                    //startActivity(intent);
+                    Intent intent = new Intent(LoginActivity.this, ViewProductsActivity.class);
+                    startActivity(intent);
                 }
                 else
                     Toast.makeText(LoginActivity.this, "Error logging in please try again", Toast.LENGTH_SHORT).show();
