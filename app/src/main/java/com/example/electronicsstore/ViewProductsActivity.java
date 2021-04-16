@@ -88,9 +88,9 @@ public class ViewProductsActivity extends AppCompatActivity {
             public void onClick(View v, int position) {
                 Product product = productList.get(position);
 
-                // Intent i = new Intent(ViewProductsActivity.this, ProductActivity.class);
-                //i.putExtra("product", (Serializable) product);
-                //startActivity(i);
+                Intent i = new Intent(ViewProductsActivity.this, ProductActivity.class);
+                i.putExtra("product", (Serializable) product);
+                startActivity(i);
 
             }
         };

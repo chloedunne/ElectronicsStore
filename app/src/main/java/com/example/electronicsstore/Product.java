@@ -1,6 +1,8 @@
 package com.example.electronicsstore;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable {
 
     String title, manufacturer, category, id;
     Double price;
