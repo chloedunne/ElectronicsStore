@@ -18,7 +18,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class ReviewActivity extends AppCompatActivity {
+public class CreateReviewActivity extends AppCompatActivity {
 
     private Product product;
     private FirebaseAuth mAuth;
@@ -57,8 +57,8 @@ public class ReviewActivity extends AppCompatActivity {
                 dbRef.child(keyId).setValue(review).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(ReviewActivity.this, "Review submitted", Toast.LENGTH_LONG).show();
-                        Intent i = new Intent(ReviewActivity.this, ViewProductsActivity.class);
+                        Toast.makeText(CreateReviewActivity.this, "Review submitted", Toast.LENGTH_LONG).show();
+                        Intent i = new Intent(CreateReviewActivity.this, ViewProductsActivity.class);
                         startActivity(i);
                     }
                 });

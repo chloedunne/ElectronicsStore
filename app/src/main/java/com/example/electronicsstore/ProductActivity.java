@@ -20,6 +20,8 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -38,8 +40,10 @@ public class ProductActivity extends AppCompatActivity {
     private ImageView productImage;
     private TextView productText, manufacturerText, priceText, stockText;
     private Button addToCart, createReview, adjustStock;
+    private DatabaseReference cartRef, userRef;
+    private FirebaseAuth mAuth;
+    private FirebaseUser user;
 
-    private DatabaseReference cartRef = FirebaseDatabase.getInstance().getReference("Cart");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +51,10 @@ public class ProductActivity extends AppCompatActivity {
         setContentView(R.layout.activity_product);
         Intent i = getIntent();
         product = (Product) i.getSerializableExtra("product");
+        mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
+        userRef = FirebaseDatabase.getInstance().getReference("Profiles");
+        cartRef = FirebaseDatabase.getInstance().getReference("Cart");
 
         productImage = findViewById(R.id.productImage1);
         priceText = findViewById(R.id.priceText);
@@ -74,7 +82,7 @@ public class ProductActivity extends AppCompatActivity {
         createReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(ProductActivity.this, ReviewActivity.class);
+                Intent i = new Intent(ProductActivity.this, CreateReviewActivity.class);
                 i.putExtra("product", (Serializable) product);
                 startActivity(i);
             }
@@ -96,6 +104,25 @@ public class ProductActivity extends AppCompatActivity {
         adjustStock.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                userRef.child(user.getUid()).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        Profile current = snapshot.getValue(Profile.class);
+                        if(current.getAdmin()){
+                            Intent i = new Intent(ProductActivity.this, CreateProductActivity.class);
+                            startActivity(i);
+                        }
+                        else
+                            Toast.makeText(ProductActivity.this, "Admin access only", Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+
                 final EditText input = new EditText(ProductActivity.this);
                 input.setInputType(InputType.TYPE_CLASS_NUMBER);
                 AlertDialog.Builder builder = new AlertDialog.Builder(ProductActivity.this);

@@ -9,6 +9,7 @@
 
     <ImageView
         android:id="@+id/imageViewLogo"
+        android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/chloe_s_electronics" />
