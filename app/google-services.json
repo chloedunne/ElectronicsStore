@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "950617817369",
+    "firebase_url": "https://electronics-93198-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "electronics-93198",
+    "storage_bucket": "electronics-93198.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:950617817369:android:0743c6f8bfeeaba6ff0588",
+        "android_client_info": {
+          "package_name": "com.example.electronicsstore"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "950617817369-vodg024s46okmr5o09voubt6hgdpagc5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEqCXKtWUUV_R4XK--woRbjR9wmk0ROGQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "950617817369-vodg024s46okmr5o09voubt6hgdpagc5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
