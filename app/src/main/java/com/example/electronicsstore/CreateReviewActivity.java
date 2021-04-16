@@ -32,7 +32,7 @@ public class CreateReviewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_review);
+        setContentView(R.layout.activity_create_review);
         Intent i = getIntent();
         product = (Product) i.getSerializableExtra("product");
         mAuth = FirebaseAuth.getInstance();

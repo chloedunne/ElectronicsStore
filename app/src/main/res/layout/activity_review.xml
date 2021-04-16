@@ -1,90 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
     <ImageView
-        android:id="@+id/logo_review_activity"
+        android:id="@+id/logo_view_review_activity"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginBottom="5dp"
+        android:padding="5dp"
         app:srcCompat="@drawable/electronics" />
 
     <TextView
-        android:id="@+id/CreateReviewTextView"
-        android:layout_width="wrap_content"
+        android:id="@+id/productText"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="30dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/logo_review_activity"
+        android:layout_below="@id/logo_view_review_activity"
         android:layout_centerInParent="true"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        android:text="Product Name"
+        android:textAllCaps="true"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@color/navy"
         android:textSize="18sp"
-        android:layout_marginTop="5dp"
-        android:text="Create Review" />
+        android:textStyle="bold"
+        app:autoSizeTextType="none" />
+
+    <TextView
+        android:id="@+id/productBrandText"
+        android:layout_width="match_parent"
+        android:layout_marginHorizontal="30dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/productText"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:inputType="textCapWords"
+        android:text="Brand Text"
+        android:textColor="@color/navy"
+        android:textSize="16sp"
+        app:autoSizeTextType="none" />
+
+    <ImageView
+        android:id="@+id/productImage1"
+        android:layout_width="270dp"
+        android:layout_height="250dp"
+        android:padding="10dp"
+        android:layout_margin="5dp"
+        android:layout_below="@id/productBrandText"
+        android:layout_centerInParent="true"
+        app:srcCompat="@drawable/no_photo" />
+
+
+    <TextView
+        android:id="@+id/usernameTextViewReview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="50dp"
+        android:text="Reviewed by "
+        android:textColor="@color/navy"
+        android:textSize="16sp"
+        android:layout_below="@id/productImage1"
+
+        />
+
+    <RatingBar
+        android:id="@+id/ratingBarReviewReview"
+        style="@style/Widget.AppCompat.RatingBar.Indicator"
+        android:layout_width="180dp"
+        android:layout_height="40dp"
+        android:isIndicator="true"
+        android:layout_marginLeft="15dp"
+        android:numStars="5"
+        android:layout_marginTop="25dp"
+        android:progressTint="@color/blue"
+        android:secondaryProgressTint="@color/blue"
+        android:layout_toRightOf="@id/ratingTextView"
+        android:stepSize="0.5"
+        android:layout_below="@id/usernameTextViewReview"
+        />
 
     <TextView
         android:id="@+id/ratingTextView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="24dp"
+        android:layout_marginLeft="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="30dp"
         android:text="Rating"
-        android:layout_marginTop="25dp"
+        android:layout_below="@id/usernameTextViewReview"
         android:textColor="@color/navy"
         android:textSize="16sp"
-        android:layout_centerInParent="true"
-        android:layout_below="@id/CreateReviewTextView"
         />
-
-    <RatingBar
-        android:id="@+id/rating_bar"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:elevation="5dp"
-        android:numStars="5"
-        android:progressTint="@color/blue"
-        android:stepSize="0.5"
-        android:layout_below="@id/ratingTextView"
-        android:layout_centerInParent="true"/>
 
     <TextView
-        android:id="@+id/textViewReview"
+        android:id="@+id/ReviewTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Review"
-        android:textColor="@color/navy"
-        android:layout_marginTop="25dp"
-        android:textSize="16sp"
-        android:layout_below="@id/rating_bar"
-        android:layout_centerInParent="true"/>
-
-    <EditText
-        android:id="@+id/editTextReview"
-        android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:background="@drawable/review_box"
-        android:gravity="start"
-        android:inputType="textPersonName"
-        android:textColor="@color/navy"
-        android:textSize="16sp"
-        android:padding="10dp"
-        android:layout_below="@id/textViewReview"
-        android:layout_centerInParent="true"
-        android:layout_marginHorizontal="20dp"/>
-
-    <Button
-        android:id="@+id/submitReviewButton"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/editTextReview"
-        android:text="Submit Review"
-        android:textSize="12sp"
-        app:backgroundTint="@color/navy"
-        android:layout_centerInParent="true"
+        android:layout_below="@id/ratingBarReviewReview"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="30dp"
-        />
-    </RelativeLayout>
+        android:layout_marginLeft="50dp"
+        android:text="Review:"
+        android:textColor="@color/navy"
+        android:textSize="16sp" />
 
-</ScrollView>
+    <TextView
+        android:id="@+id/descriptionTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="45dp"
+        android:layout_below="@id/ReviewTextView"
+        android:background="@drawable/review_box"
+        android:padding="7dp"
+        android:text="TextView"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:textStyle="normal"
+        />
+
+
+</RelativeLayout>

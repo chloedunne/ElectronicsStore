@@ -128,8 +128,8 @@ public class ViewProductsActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.view_all_reviews) {
-
-
+            Intent i = new Intent(ViewProductsActivity.this, ViewReviewActivity.class);
+            startActivity(i);
         } else if (id == R.id.view_cart) {
 
 
