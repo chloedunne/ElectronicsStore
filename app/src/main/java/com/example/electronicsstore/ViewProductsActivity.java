@@ -18,6 +18,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -31,6 +33,7 @@ public class ViewProductsActivity extends AppCompatActivity {
     private RecyclerAdapter.RecyclerViewClickListener clickListener;
     private DatabaseReference productRef;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +42,7 @@ public class ViewProductsActivity extends AppCompatActivity {
         addProductButton = findViewById(R.id.addButton);
         recyclerView = findViewById(R.id.productRCV);
         productRef = FirebaseDatabase.getInstance().getReference("Products");
+
 
         setOnClickListener();
         adapter = new RecyclerAdapter(productList, clickListener);
