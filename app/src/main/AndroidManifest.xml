@@ -11,6 +11,7 @@
         android:theme="@style/Theme.ElectronicsStore">
         <activity android:name=".ProductActivity"></activity>
         <activity android:name=".CreateProductActivity" />
+        <activity android:name=".ReviewActivity" />
         <activity android:name=".ViewProductsActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity" />

@@ -30,6 +30,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
+import java.io.Serializable;
+
 public class ProductActivity extends AppCompatActivity {
 
     private Product product;
@@ -68,6 +70,15 @@ public class ProductActivity extends AppCompatActivity {
         manufacturerText.setText(product.getManufacturer());
         stockText.setText("Stock level: " + String.valueOf(product.getStock()));
         priceText.setText("Price: " + String.valueOf(product.getPrice()));
+
+        createReview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ProductActivity.this, ReviewActivity.class);
+                i.putExtra("product", (Serializable) product);
+                startActivity(i);
+            }
+        });
 
 
         addToCart.setOnClickListener(new View.OnClickListener() {
