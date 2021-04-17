@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/logo_cart_activity"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        app:srcCompat="@drawable/electronics" />
+
+    <TextView
+        android:id="@+id/textViewCart"
+        android:layout_width="108dp"
+        android:layout_height="37dp"
+        android:gravity="center"
+        android:text="Cart"
+        android:textColor="@color/navy"
+        android:textSize="18sp"
+        android:layout_below="@id/logo_cart_activity"
+        android:layout_centerHorizontal="true"/>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/cartRCV"
+        android:layout_below="@id/textViewCart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_above="@id/totalPriceTextView"
+        />
+
+    <TextView
+        android:id="@+id/totalPriceTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="40dp"
+        android:text="Total: "
+        android:textColor="@color/navy"
+        android:textSize="16sp"
+        android:layout_above="@id/checkoutButton"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:id="@+id/checkoutButton"
+        android:elevation="50dp"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/navy"
+        android:text="Proceed to Checkout"
+        android:textSize="14sp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp"/>
+
+</RelativeLayout>
