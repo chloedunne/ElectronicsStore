@@ -132,6 +132,8 @@ public class ViewProductsActivity extends AppCompatActivity {
 
     public ArrayList<Product> sortList(String order) {
         switch (order) {
+            case "New In":
+                return productList;
             case "Price Ascending":
                 return (ArrayList<Product>) productList.stream()
                         .sorted(Comparator.comparingDouble(Product::getPrice)).collect(Collectors.toList());

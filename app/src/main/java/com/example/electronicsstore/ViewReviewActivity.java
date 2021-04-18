@@ -28,11 +28,10 @@ import java.util.ArrayList;
 public class ViewReviewActivity extends AppCompatActivity {
 
     private FirebaseUser user;
-    private DatabaseReference uReference, rReference;
+    private DatabaseReference rReference;
     private RecyclerView recyclerView;
-    private String userID, noteID;
+    private String userID;
     private ArrayList<Review> reviewList;
-    private TextView welcome;
     private RecyclerAdapterReview.RecyclerViewClickListener clickListener;
     private RecyclerAdapterReview adapter;
 
