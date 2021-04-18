@@ -1,13 +1,16 @@
 package com.example.electronicsstore;
 
-public class Profile {
+import java.io.Serializable;
 
-    String firstname, lastname, email, password, address, phone, cardDetails;
+public class Profile implements Serializable {
+
+    String firstname, lastname, email, password, address, phone;
+    CardDetails cardDetails;
     Boolean admin;
 
     public Profile(){}
 
-    public Profile(String firstname, String lastname, String email, String password, String address, String phone, Boolean admin, String cardDetails) {
+    public Profile(String firstname, String lastname, String email, String password, String address, String phone, Boolean admin, CardDetails cardDetails) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
@@ -74,11 +77,11 @@ public class Profile {
         this.admin = admin;
     }
 
-    public String getCardDetails() {
+    public CardDetails getCardDetails() {
         return cardDetails;
     }
 
-    public void setCardDetails(String cardDetails) {
+    public void setCardDetails(CardDetails cardDetails) {
         this.cardDetails = cardDetails;
     }
 }

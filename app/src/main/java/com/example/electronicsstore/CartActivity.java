@@ -3,6 +3,7 @@ package com.example.electronicsstore;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,10 +29,11 @@ public class CartActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private FirebaseUser user;
     private FirebaseAuth mAuth;
+    private Button proceedToCheckout;
     private RecyclerAdapterCart.RecyclerViewClickListener clickListener;
     private ArrayList<Product> productList = new ArrayList<Product>();
     private RecyclerAdapterCart adapter;
-    private DatabaseReference dbRef;
+    private DatabaseReference dbRef, userRef;
     private double total;
     private TextView totalTextView;
 
@@ -48,6 +50,8 @@ public class CartActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.cartRCV);
         totalTextView = findViewById(R.id.totalPriceTextView);
         dbRef = FirebaseDatabase.getInstance().getReference("Cart");
+        userRef = FirebaseDatabase.getInstance().getReference("Profiles");
+        proceedToCheckout = findViewById(R.id.checkoutButton);
 
         dbRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -70,6 +74,25 @@ public class CartActivity extends AppCompatActivity {
             }
         });
 
+
+        proceedToCheckout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                userRef.child(user.getUid()).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        Profile current = snapshot.getValue(Profile.class);
+                        Order order = new Order(productList, current, total);
+                        Intent intent = new Intent(CartActivity.this, OrderActivity.class);
+                        intent.putExtra("order", (Serializable) order);
+                        startActivity(intent);
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {}
+                });
+            }
+        });
 
     }
 

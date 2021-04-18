@@ -123,7 +123,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
 
                 if (task.isSuccessful()) {
-                    Profile profile = new Profile( firstname, lastname, email, password, address, phone, finalAdmin, "");
+                    Profile profile = new Profile( firstname, lastname, email, password, address, phone, finalAdmin, null);
                     FirebaseDatabase.getInstance().getReference("Profiles")
                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                             .setValue(profile).addOnCompleteListener(new OnCompleteListener<Void>() {
