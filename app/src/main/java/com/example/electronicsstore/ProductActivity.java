@@ -92,15 +92,15 @@ public class ProductActivity extends AppCompatActivity {
         addToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    cartRef.child(product.getId()).setValue(product).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            Toast.makeText(ProductActivity.this, product.getTitle() + " added to Cart", Toast.LENGTH_SHORT).show();
-                            Intent i = new Intent(ProductActivity.this, ViewProductsActivity.class);
-                            startActivity(i);
-                        }
-                    });
-                }
+                cartRef.child(product.getId()).setValue(product).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Toast.makeText(ProductActivity.this, product.getTitle() + " added to Cart", Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent(ProductActivity.this, ViewProductsActivity.class);
+                        startActivity(i);
+                    }
+                });
+            }
         });
 
         adjustStock.setOnClickListener(new View.OnClickListener() {
@@ -110,11 +110,9 @@ public class ProductActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         Profile current = snapshot.getValue(Profile.class);
-                        if(current.getAdmin()){
-                            Intent i = new Intent(ProductActivity.this, CreateProductActivity.class);
-                            startActivity(i);
-                        }
-                        else
+                        if (current.getAdmin()) {
+                           adjustStock();
+                        } else
                             Toast.makeText(ProductActivity.this, "Admin access only", Toast.LENGTH_LONG).show();
                     }
 
@@ -123,14 +121,16 @@ public class ProductActivity extends AppCompatActivity {
 
                     }
                 });
+            }
 
+            public void adjustStock() {
 
                 final EditText input = new EditText(ProductActivity.this);
                 input.setInputType(InputType.TYPE_CLASS_NUMBER);
 
                 AlertDialog.Builder builder = new AlertDialog.Builder(ProductActivity.this);
                 builder.setTitle("Adjust Stock");
-                builder.setMessage("Current stock is " + String.valueOf(product.getStock()) + ". Please type in updated stock level:" );
+                builder.setMessage("Current stock is " + String.valueOf(product.getStock()) + ". Please type in updated stock level:");
                 builder.setView(input);
                 builder.setPositiveButton("Update", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
@@ -150,6 +150,7 @@ public class ProductActivity extends AppCompatActivity {
             }
         });
     }
+
 
     public void updateStockLevel(int newStock){
 
