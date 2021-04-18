@@ -3,7 +3,6 @@ package com.example.electronicsstore;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,6 +11,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.electronicsstore.adapters.RecyclerAdapterCustomer;
+import com.example.electronicsstore.objects.Profile;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,6 +37,7 @@ public class ViewCustomersActivity extends AppCompatActivity {
 
         userRef = FirebaseDatabase.getInstance().getReference("Profiles");
         recyclerView = findViewById(R.id.customerRCV);
+
 
         setOnClickListener();
         adapter = new RecyclerAdapterCustomer(customerList, clickListener);
@@ -71,7 +73,7 @@ public class ViewCustomersActivity extends AppCompatActivity {
             public void onClick(View v, int position) {
                 Profile profile = customerList.get(position);
 
-                Intent i = new Intent(ViewCustomersActivity.this, ProductActivity.class);
+                Intent i = new Intent(ViewCustomersActivity.this, CustomerDetailsActivity.class);
                 i.putExtra("profile", (Serializable) profile);
                 startActivity(i);
 

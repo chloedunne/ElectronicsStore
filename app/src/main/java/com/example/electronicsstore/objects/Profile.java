@@ -1,4 +1,4 @@
-package com.example.electronicsstore;
+package com.example.electronicsstore.objects;
 
 import java.io.Serializable;
 

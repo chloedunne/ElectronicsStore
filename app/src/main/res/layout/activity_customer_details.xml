@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CustomerDetailsActivity">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        app:srcCompat="@drawable/electronics" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_marginVertical="5dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_below="@id/logo"
+        android:textSize="16sp"
+        android:id="@+id/name"
+        android:text="Name:"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_marginVertical="5dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:id="@+id/email"
+        android:textSize="16sp"
+        android:layout_below="@id/name"
+        android:text="Email:"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_marginVertical="5dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:id="@+id/phone"
+        android:textSize="16sp"
+        android:layout_below="@id/email"
+        android:text="Phone:"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_marginVertical="5dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:id="@+id/address"
+        android:textSize="16sp"
+        android:layout_below="@id/phone"
+        android:text="Address:"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_marginVertical="5dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:id="@+id/password"
+        android:textSize="16sp"
+        android:layout_below="@id/address"
+        android:text="Password:"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_marginVertical="5dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:id="@+id/carddetails"
+        android:textSize="16sp"
+        android:layout_below="@id/password"
+        android:text="Card Details:"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="10dp"
+        android:textSize="16sp"
+        android:id="@+id/orderHistory"
+        android:text="Order History"
+        android:layout_below="@id/carddetails"
+        android:layout_marginHorizontal="30dp"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/orderHistory"
+        android:id="@+id/orderHistoryRCV"/>
+
+</RelativeLayout>

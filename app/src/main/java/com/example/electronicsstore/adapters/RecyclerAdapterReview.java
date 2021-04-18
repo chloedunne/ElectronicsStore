@@ -1,4 +1,4 @@
-package com.example.electronicsstore;
+package com.example.electronicsstore.adapters;
 
 import android.net.Uri;
 import android.view.LayoutInflater;
@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.electronicsstore.R;
+import com.example.electronicsstore.objects.Review;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;

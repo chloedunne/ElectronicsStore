@@ -1,4 +1,4 @@
-package com.example.electronicsstore;
+package com.example.electronicsstore.adapters;
 
 import android.net.Uri;
 import android.view.LayoutInflater;
@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.electronicsstore.R;
+import com.example.electronicsstore.objects.Product;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -16,28 +18,29 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class RecyclerAdapterCart extends RecyclerView.Adapter<RecyclerAdapterCart.MyViewHolder> {
+public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyViewHolder> {
 
     private ArrayList<Product> productList;
-    private RecyclerAdapterCart.RecyclerViewClickListener listener;
+    private RecyclerViewClickListener listener;
 
-    public RecyclerAdapterCart(ArrayList<Product> productList, RecyclerAdapterCart.RecyclerViewClickListener listener){
+    public RecyclerAdapter(ArrayList<Product> productList, RecyclerViewClickListener listener){
         this.productList = productList;
         this.listener = listener;
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        public TextView productNameTxt, brandNameTxt, priceTxt;
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        public TextView productNameTxt;
+        public TextView manufacturerNameTxt;
+        public TextView priceTxt;
         public ImageView productImg;
-
 
         public MyViewHolder(View itemView) {
             super(itemView);
 
-            productNameTxt = itemView.findViewById(R.id.nameTextViewCart);
-            brandNameTxt = itemView.findViewById(R.id.brandTextViewCart);
-            priceTxt = itemView.findViewById(R.id.priceTextViewCart);
-            productImg = itemView.findViewById(R.id.imageViewCart);
+            productNameTxt = itemView.findViewById(R.id.productNameTxt);
+            manufacturerNameTxt = itemView.findViewById(R.id.manufacturerNameTxt);
+            priceTxt = itemView.findViewById(R.id.priceTxt);
+            productImg = itemView.findViewById(R.id.productImage);
             itemView.setOnClickListener(this);
         }
 
@@ -48,21 +51,20 @@ public class RecyclerAdapterCart extends RecyclerView.Adapter<RecyclerAdapterCar
     }
 
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cart_layout, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_layout, parent, false);
         MyViewHolder viewHolder = new MyViewHolder(v);
         return viewHolder;
     }
 
 
     public void onBindViewHolder(MyViewHolder holder, int position) {
-
         Product currentProduct = productList.get(position);
 
         StorageReference productReference = FirebaseStorage.getInstance().getReference().child(currentProduct.getId() + ".jpg");
 
         holder.productNameTxt.setText(currentProduct.getTitle());
-        holder.brandNameTxt.setText(currentProduct.getManufacturer());
-        holder.priceTxt.setText("€"+String.valueOf(currentProduct.getPrice()));
+        holder.manufacturerNameTxt.setText(currentProduct.getManufacturer());
+        holder.priceTxt.setText("€" + currentProduct.getPrice());
 
         productReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
@@ -75,6 +77,7 @@ public class RecyclerAdapterCart extends RecyclerView.Adapter<RecyclerAdapterCar
     public int getItemCount() {
         return productList.size();
     }
+
 
     public interface RecyclerViewClickListener{
         void onClick(View v, int position);

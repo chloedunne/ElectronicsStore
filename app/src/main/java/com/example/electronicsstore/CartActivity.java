@@ -13,6 +13,10 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.electronicsstore.adapters.RecyclerAdapterCart;
+import com.example.electronicsstore.objects.Order;
+import com.example.electronicsstore.objects.Product;
+import com.example.electronicsstore.objects.Profile;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -83,7 +87,7 @@ public class CartActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         Profile current = snapshot.getValue(Profile.class);
-                        Order order = new Order(productList, current, total);
+                        Order order = new Order(productList, current, total, "");
                         Intent intent = new Intent(CartActivity.this, OrderActivity.class);
                         intent.putExtra("order", (Serializable) order);
                         startActivity(intent);

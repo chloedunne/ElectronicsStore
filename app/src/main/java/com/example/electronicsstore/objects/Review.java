@@ -1,4 +1,6 @@
-package com.example.electronicsstore;
+package com.example.electronicsstore.objects;
+
+import com.example.electronicsstore.objects.Product;
 
 import java.io.Serializable;
 

@@ -1,4 +1,4 @@
-package com.example.electronicsstore;
+package com.example.electronicsstore.objects;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -8,13 +8,23 @@ public class Order implements Serializable {
     private ArrayList<Product> products;
     private Profile profile;
     private double total;
+    private String orderNum;
 
     public Order(){}
 
-    public Order(ArrayList<Product> products, Profile profile, double total) {
+    public Order(ArrayList<Product> products, Profile profile, double total, String orderNum) {
         this.products = products;
         this.profile = profile;
         this.total = total;
+        this.orderNum = orderNum;
+    }
+
+    public String getOrderNum() {
+        return orderNum;
+    }
+
+    public void setOrderNum(String orderNum) {
+        this.orderNum = orderNum;
     }
 
     public ArrayList<Product> getProducts() {
