@@ -39,6 +39,7 @@ public class ViewProductsActivity extends AppCompatActivity {
     private RecyclerAdapterProduct adapter;
     private RecyclerView recyclerView;
     private ArrayList<Product> productList = new ArrayList<Product>();
+    ArrayList<Product> sortedList = null;
     private RecyclerAdapterProduct.RecyclerViewClickListener clickListener;
     private DatabaseReference productRef, userRef;
     private FirebaseAuth mAuth;
@@ -75,7 +76,7 @@ public class ViewProductsActivity extends AppCompatActivity {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                ArrayList<Product> sortedList = sortList(parent.getItemAtPosition(position).toString());
+                sortedList = sortList(parent.getItemAtPosition(position).toString());
                 adapter = new RecyclerAdapterProduct(sortedList, clickListener);
                 recyclerView.setAdapter(adapter);
             }
@@ -158,7 +159,11 @@ public class ViewProductsActivity extends AppCompatActivity {
         clickListener = new RecyclerAdapterProduct.RecyclerViewClickListener() {
             @Override
             public void onClick(View v, int position) {
-                Product product = productList.get(position);
+                Product product = null;
+                if(sortedList!= null){
+                    product = sortedList.get(position);
+                }else
+                    product = productList.get(position);
 
                 Intent i = new Intent(ViewProductsActivity.this, ProductActivity.class);
                 i.putExtra("product", (Serializable) product);

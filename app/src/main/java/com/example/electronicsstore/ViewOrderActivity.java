@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.example.electronicsstore.adapters.RecyclerAdapterCart;
 import com.example.electronicsstore.adapters.RecyclerAdapterProduct;
 import com.example.electronicsstore.objects.Order;
 
@@ -19,9 +20,9 @@ public class ViewOrderActivity extends AppCompatActivity {
     private Order order;
     private TextView orderNumber, orderAddress, orderTotal;
     private RecyclerView recyclerView;
-    private RecyclerAdapterProduct adapter;
+    private RecyclerAdapterCart adapter;
     private ArrayList productList;
-    private RecyclerAdapterProduct.RecyclerViewClickListener clickListener;
+    private RecyclerAdapterCart.RecyclerViewClickListener clickListener;
 
 
     @Override
@@ -41,7 +42,7 @@ public class ViewOrderActivity extends AppCompatActivity {
         orderAddress.setText("Shipping Address: " + order.getProfile().getAddress());
         orderTotal.setText("Order Total: " + String.valueOf(order.getTotal()));
 
-        adapter = new RecyclerAdapterProduct(productList, clickListener);
+        adapter = new RecyclerAdapterCart(productList, clickListener);
         recyclerView.setLayoutManager(new LinearLayoutManager(ViewOrderActivity.this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);

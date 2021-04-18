@@ -129,6 +129,17 @@ public class OrderActivity extends AppCompatActivity {
 
                     }
 
+                    DiscountCalculator calculator = null;
+                    if(productList.size() < 2)
+                        calculator = new NoDiscount();
+                    else if(productList.size() == 2)
+                        calculator = new Discount10();
+                    else if(productList.size() > 2)
+                        calculator = new Discount15();
+
+                    double totalWithDiscount = calculator.calculateDiscount(order.getTotal());
+                    order.setTotal(totalWithDiscount);
+
                 String keyId = orderRef.push().getKey();
                 order.setOrderNum(keyId);
                 orderRef.child(keyId).setValue(order).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -136,6 +147,8 @@ public class OrderActivity extends AppCompatActivity {
                     public void onComplete( Task<Void> task) {
                         Toast.makeText(OrderActivity.this, "Order placed sucessfully, Order number: " + keyId, Toast.LENGTH_LONG).show();
                         FirebaseDatabase.getInstance().getReference("Cart").removeValue();
+                        Intent i = new Intent(OrderActivity.this, ViewProductsActivity.class);
+                        startActivity(i);
                     }
                 });
             }else
