@@ -29,9 +29,23 @@
         android:layout_height="wrap_content"
         android:text="add product"
         android:layout_below="@id/logo"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="2dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="5dp"
         android:backgroundTint="@color/navy"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sort:"
+        android:layout_toLeftOf="@id/sortSpinner"
+        android:layout_alignBottom="@id/sortSpinner"/>
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logo"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="5dp"
+        android:id="@+id/sortSpinner"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"

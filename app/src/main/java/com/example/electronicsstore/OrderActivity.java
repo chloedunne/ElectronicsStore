@@ -14,7 +14,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.electronicsstore.adapters.RecyclerAdapter;
+import com.example.electronicsstore.adapters.RecyclerAdapterProduct;
 import com.example.electronicsstore.objects.CardDetails;
 import com.example.electronicsstore.objects.Order;
 import com.example.electronicsstore.objects.Product;
@@ -32,7 +32,7 @@ public class OrderActivity extends AppCompatActivity {
     private Order order;
     private EditText cardNumber , month, year, ccv;
     private ArrayList<Product> productList;
-    private RecyclerAdapter adapter;
+    private RecyclerAdapterProduct adapter;
     private RecyclerView recyclerView;
     private Button payButton;
     private DatabaseReference orderRef, profileRef, productRef;
@@ -66,7 +66,7 @@ public class OrderActivity extends AppCompatActivity {
         productRef = FirebaseDatabase.getInstance().getReference("Products");
         profileRef = FirebaseDatabase.getInstance().getReference("Profiles").child(user.getUid()).child("cardDetails");
 
-        adapter = new RecyclerAdapter(productList, null);
+        adapter = new RecyclerAdapterProduct(productList, null);
         recyclerView.setLayoutManager(new LinearLayoutManager(OrderActivity.this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);

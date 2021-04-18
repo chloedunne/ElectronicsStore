@@ -18,12 +18,12 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyViewHolder> {
+public class RecyclerAdapterProduct extends RecyclerView.Adapter<RecyclerAdapterProduct.MyViewHolder> {
 
     private ArrayList<Product> productList;
     private RecyclerViewClickListener listener;
 
-    public RecyclerAdapter(ArrayList<Product> productList, RecyclerViewClickListener listener){
+    public RecyclerAdapterProduct(ArrayList<Product> productList, RecyclerViewClickListener listener){
         this.productList = productList;
         this.listener = listener;
     }

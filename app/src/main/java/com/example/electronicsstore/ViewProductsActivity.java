@@ -11,10 +11,13 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.electronicsstore.adapters.RecyclerAdapter;
+import com.example.electronicsstore.adapters.RecyclerAdapterProduct;
 import com.example.electronicsstore.objects.Product;
 import com.example.electronicsstore.objects.Profile;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,17 +30,20 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.stream.Collectors;
 
 public class ViewProductsActivity extends AppCompatActivity {
 
     private Button addProductButton;
-    private RecyclerAdapter adapter;
+    private RecyclerAdapterProduct adapter;
     private RecyclerView recyclerView;
     private ArrayList<Product> productList = new ArrayList<Product>();
-    private RecyclerAdapter.RecyclerViewClickListener clickListener;
+    private RecyclerAdapterProduct.RecyclerViewClickListener clickListener;
     private DatabaseReference productRef, userRef;
     private FirebaseAuth mAuth;
     private FirebaseUser user;
+    private Spinner spinner;
 
 
     @Override
@@ -49,16 +55,37 @@ public class ViewProductsActivity extends AppCompatActivity {
 
         addProductButton = findViewById(R.id.addButton);
         recyclerView = findViewById(R.id.productRCV);
+        spinner = findViewById(R.id.sortSpinner);
         productRef = FirebaseDatabase.getInstance().getReference("Products");
         userRef = FirebaseDatabase.getInstance().getReference("Profiles");
 
         setOnClickListener();
-        adapter = new RecyclerAdapter(productList, clickListener);
+        adapter = new RecyclerAdapterProduct(productList, clickListener);
         recyclerView.setLayoutManager(new GridLayoutManager(ViewProductsActivity.this, 2, GridLayoutManager.VERTICAL, false));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
 
         loadProducts();
+
+        ArrayAdapter<CharSequence> staticAdapter = ArrayAdapter.createFromResource(ViewProductsActivity.this, R.array.sort_array,
+                android.R.layout.simple_spinner_item);
+        staticAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(staticAdapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                ArrayList<Product> sortedList = sortList(parent.getItemAtPosition(position).toString());
+                adapter = new RecyclerAdapterProduct(sortedList, clickListener);
+                recyclerView.setAdapter(adapter);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                adapter = new RecyclerAdapterProduct(productList, clickListener);
+                recyclerView.setAdapter(adapter);
+            }
+        });
 
         addProductButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,11 +94,10 @@ public class ViewProductsActivity extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         Profile current = snapshot.getValue(Profile.class);
-                        if(current.getAdmin()){
+                        if (current.getAdmin()) {
                             Intent i = new Intent(ViewProductsActivity.this, CreateProductActivity.class);
                             startActivity(i);
-                        }
-                        else
+                        } else
                             Toast.makeText(ViewProductsActivity.this, "Admin access only", Toast.LENGTH_LONG).show();
                     }
 
@@ -103,8 +129,33 @@ public class ViewProductsActivity extends AppCompatActivity {
         });
     }
 
+    public ArrayList<Product> sortList(String order) {
+        switch (order) {
+            case "Price Ascending":
+                return (ArrayList<Product>) productList.stream()
+                        .sorted(Comparator.comparingDouble(Product::getPrice)).collect(Collectors.toList());
+            case "Price Descending":
+                return (ArrayList<Product>) productList.stream()
+                        .sorted(Comparator.comparingDouble(Product::getPrice).reversed()).collect(Collectors.toList());
+            case "Title Ascending":
+                return (ArrayList<Product>) productList.stream()
+                        .sorted(Comparator.comparing(Product::getTitle)).collect(Collectors.toList());
+            case "Title Descending":
+                return (ArrayList<Product>) productList.stream()
+                        .sorted(Comparator.comparing(Product::getTitle).reversed()).collect(Collectors.toList());
+            case "Manufacturer Descending":
+                return (ArrayList<Product>) productList.stream()
+                        .sorted(Comparator.comparing(Product::getManufacturer).reversed()).collect(Collectors.toList());
+            case "Manufacturer Ascending":
+                return (ArrayList<Product>) productList.stream()
+                        .sorted(Comparator.comparing(Product::getManufacturer)).collect(Collectors.toList());
+        }
+        return null;
+    }
+
+
     private void setOnClickListener() {
-        clickListener = new RecyclerAdapter.RecyclerViewClickListener() {
+        clickListener = new RecyclerAdapterProduct.RecyclerViewClickListener() {
             @Override
             public void onClick(View v, int position) {
                 Product product = productList.get(position);
@@ -138,15 +189,16 @@ public class ViewProductsActivity extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     Profile current = snapshot.getValue(Profile.class);
-                    if(current.getAdmin()){
+                    if (current.getAdmin()) {
                         Intent i = new Intent(ViewProductsActivity.this, ViewCustomersActivity.class);
                         startActivity(i);
-                    }
-                    else
+                    } else
                         Toast.makeText(ViewProductsActivity.this, "Admin access only", Toast.LENGTH_LONG).show();
                 }
+
                 @Override
-                public void onCancelled(@NonNull DatabaseError error) {}
+                public void onCancelled(@NonNull DatabaseError error) {
+                }
             });
         }
         return true;

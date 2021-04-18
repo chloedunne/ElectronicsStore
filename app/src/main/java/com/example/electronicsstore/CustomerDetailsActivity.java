@@ -1,6 +1,5 @@
 package com.example.electronicsstore;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,16 +8,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.electronicsstore.adapters.RecyclerAdapter;
-import com.example.electronicsstore.adapters.RecyclerAdapterCustomer;
 import com.example.electronicsstore.adapters.RecyclerAdapterOrder;
 import com.example.electronicsstore.objects.Order;
-import com.example.electronicsstore.objects.Product;
 import com.example.electronicsstore.objects.Profile;
-import com.example.electronicsstore.objects.Review;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

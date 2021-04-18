@@ -127,6 +127,7 @@ public class ProductActivity extends AppCompatActivity {
 
                 final EditText input = new EditText(ProductActivity.this);
                 input.setInputType(InputType.TYPE_CLASS_NUMBER);
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(ProductActivity.this);
                 builder.setTitle("Adjust Stock");
                 builder.setMessage("Current stock is " + String.valueOf(product.getStock()) + ". Please type in updated stock level:" );

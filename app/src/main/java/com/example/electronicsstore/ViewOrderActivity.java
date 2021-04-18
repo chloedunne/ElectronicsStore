@@ -7,15 +7,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.electronicsstore.adapters.RecyclerAdapter;
-import com.example.electronicsstore.adapters.RecyclerAdapterOrder;
+import com.example.electronicsstore.adapters.RecyclerAdapterProduct;
 import com.example.electronicsstore.objects.Order;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 public class ViewOrderActivity extends AppCompatActivity {
@@ -23,9 +19,9 @@ public class ViewOrderActivity extends AppCompatActivity {
     private Order order;
     private TextView orderNumber, orderAddress, orderTotal;
     private RecyclerView recyclerView;
-    private RecyclerAdapter adapter;
+    private RecyclerAdapterProduct adapter;
     private ArrayList productList;
-    private RecyclerAdapter.RecyclerViewClickListener clickListener;
+    private RecyclerAdapterProduct.RecyclerViewClickListener clickListener;
 
 
     @Override
@@ -45,7 +41,7 @@ public class ViewOrderActivity extends AppCompatActivity {
         orderAddress.setText("Shipping Address: " + order.getProfile().getAddress());
         orderTotal.setText("Order Total: " + String.valueOf(order.getTotal()));
 
-        adapter = new RecyclerAdapter(productList, clickListener);
+        adapter = new RecyclerAdapterProduct(productList, clickListener);
         recyclerView.setLayoutManager(new LinearLayoutManager(ViewOrderActivity.this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
