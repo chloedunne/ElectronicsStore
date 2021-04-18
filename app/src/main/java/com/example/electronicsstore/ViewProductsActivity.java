@@ -134,7 +134,20 @@ public class ViewProductsActivity extends AppCompatActivity {
             Intent i = new Intent(ViewProductsActivity.this, CartActivity.class);
             startActivity(i);
         } else if (id == R.id.view_customers) {
-
+            userRef.child(user.getUid()).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    Profile current = snapshot.getValue(Profile.class);
+                    if(current.getAdmin()){
+                        Intent i = new Intent(ViewProductsActivity.this, ViewCustomersActivity.class);
+                        startActivity(i);
+                    }
+                    else
+                        Toast.makeText(ViewProductsActivity.this, "Admin access only", Toast.LENGTH_LONG).show();
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {}
+            });
         }
         return true;
     }

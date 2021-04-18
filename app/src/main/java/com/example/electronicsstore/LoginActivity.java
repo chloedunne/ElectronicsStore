@@ -71,6 +71,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
+                    FirebaseDatabase.getInstance().getReference("Cart").removeValue();
                     FirebaseUser user = mAuth.getCurrentUser();
                     Intent intent = new Intent(LoginActivity.this, ViewProductsActivity.class);
                     startActivity(intent);

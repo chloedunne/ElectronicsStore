@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ViewCustomersActivity">
+
+    <ImageView
+        android:id="@+id/logo_view_customer_activity"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        app:srcCompat="@drawable/electronics" />
+
+    <TextView
+        android:id="@+id/textViewCustomer"
+        android:layout_width="108dp"
+        android:layout_height="37dp"
+        android:gravity="center"
+        android:text="Customers"
+        android:textColor="@color/navy"
+        android:textSize="18sp"
+        android:layout_below="@id/logo_view_customer_activity"
+        android:layout_centerHorizontal="true"/>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/customerRCV"
+        android:layout_below="@id/textViewCustomer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="20dp"
+        />
+
+</RelativeLayout>

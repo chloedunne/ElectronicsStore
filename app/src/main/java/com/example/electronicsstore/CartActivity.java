@@ -47,7 +47,7 @@ public class CartActivity extends AppCompatActivity {
         user = mAuth.getCurrentUser();
         recyclerView = findViewById(R.id.cartRCV);
         totalTextView = findViewById(R.id.totalPriceTextView);
-        dbRef = FirebaseDatabase.getInstance().getReference("Cart").child(user.getUid());
+        dbRef = FirebaseDatabase.getInstance().getReference("Cart");
 
         dbRef.addValueEventListener(new ValueEventListener() {
             @Override

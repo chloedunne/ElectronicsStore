@@ -15,7 +15,6 @@
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:adjustViewBounds="true"
-        android:background="@drawable/no_photo"
         android:elevation="15dp"
         android:scaleType="fitXY" />
 
